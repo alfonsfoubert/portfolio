@@ -8,10 +8,9 @@ define(['jquery', 'underscore', 'backbone', 'models/contact', 'text!templates/co
 			el: '#content',
 			template: _.template( ContactTemplate ),
 			initialize: function(){
-				$("#page-title").html("Contacta conmigo");
-				this.render();
 			},
 			render: function(){
+				$("#page-title").html("Contacta conmigo");
 				$(this.el).html( this.template() );
 			},
 			select: function( ev ){

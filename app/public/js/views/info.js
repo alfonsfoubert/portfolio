@@ -4,10 +4,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/info.html'],
 			el: '#content',
 			template: _.template( InfoTemplate ),
 			initialize: function(){
-				$("#page-title").html("¿Quién soy?");
-				this.render();
 			},
 			render: function(){
+				$("#page-title").html("¿Quién soy?");
 				$(this.el).html( this.template() );
 			}
 		});

@@ -4,6 +4,10 @@ define(['backbone', 'jquery_cmd', 'views/index', 'views/info', 'views/projects',
     var App = Backbone.Router.extend({
         initialize: function(){
             this.bind( "all", this.setActive, this );
+            this.indexView    = new IndexView();
+            this.infoView     = new InfoView();
+            this.projectsView = new ProjectsView();
+            this.contactView  = new ContactView();
         },
         routes : {
             ""         : "index",
@@ -13,16 +17,16 @@ define(['backbone', 'jquery_cmd', 'views/index', 'views/info', 'views/projects',
             "contact"  : "contact"
         },
         index : function() {
-            var indexView = new IndexView();
+            this.indexView.render();
         },
         info: function(){
-            var infoView = new InfoView();
+            this.infoView.render();
         },
         projects: function(){
-            var projectsView = new ProjectsView();
+            this.projectsView.projects.fetch();
         },
         contact: function(){
-            var contactView = new ContactView();
+            this.contactView.render();
         },
         setActive: function(){
             $(".menu li").removeClass( "active" );

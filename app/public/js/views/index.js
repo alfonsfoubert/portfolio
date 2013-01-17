@@ -4,10 +4,9 @@ define(['jquery', 'underscore', 'backbone', 'text!templates/index.html'],
 			el: '#content',
 			template: _.template( IndexTemplate ),
 			initialize: function(){
-				$("#page-title").html("Bienvenido");
-				this.render();
 			},
 			render: function(){
+				$("#page-title").html("Bienvenido");
 				$(this.el).html( this.template() );
 				prettyPrint(); // Prettify the code
 				var cmd = $('#cmd').bsp_cmd(); // Initialize the console

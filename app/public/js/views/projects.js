@@ -4,12 +4,12 @@ define(['jquery', 'bootstrap', 'underscore', 'backbone', 'text!templates/project
 			el: '#content',
 			template: _.template( ProjectsTemplate ),
 			initialize: function(){
-				$("#page-title").html("Mis últimos proyectos");
 				this.projects = new ProjectsCollection();
 				this.projects.bind( 'all', this.render, this );
-				this.projects.fetch();
+				// this.projects.fetch();
 			},
 			render: function(){
+				$("#page-title").html("Mis últimos proyectos");
 				$(this.el).html( this.template() );
 				var list = $(".projects", $(this.el));
 				this.projects.each(function( model ){
