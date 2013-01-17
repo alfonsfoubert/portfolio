@@ -1,3 +1,3 @@
 #!/bin/bash
 
-/usr/bin/node /home/ubuntu/projects/portfolio/app/app.js
+nohup /usr/bin/node /home/ubuntu/projects/portfolio/app/app.js
