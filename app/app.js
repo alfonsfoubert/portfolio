@@ -1,6 +1,7 @@
 // Requires
 var express = require( 'express' );
 var fs      = require('fs');
+var path    = require("path");
 
 // Instances
 var app     = express();
@@ -15,10 +16,12 @@ app.get('/api', function( req, res ){
 });
 
 app.get('/api/projects', function( req, res ){
-	fs.readFile("data/projects.json", "utf8", function( err, data ){
-		var projects = JSON.parse( data );
-		res.json( projects );
-	});
+	fs.readFile( path.resolve(__dirname, 'data/projects.json') , "utf8", 
+		function( err, data ){
+			var projects = JSON.parse( data );
+			res.json( projects );
+		}
+	);
 });
 
 app.post('/api/contact', function( req, res ){
@@ -28,5 +31,5 @@ app.post('/api/contact', function( req, res ){
 });
 
 // Starting server
-console.log( 'Lisening server at port 3000 ');
-app.listen(3000);
+console.log( 'Lisening server at port 80 ');
+app.listen(80);
