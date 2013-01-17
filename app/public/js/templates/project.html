@@ -1,0 +1,13 @@
+<div class="thumbnail">
+	<a href="<%= model.get("href") %>" class="thumbnail" rel="tooltip" data-placement="top" data-original-title="<%= model.get("name") %>">
+		<img src="img/projects/<%= model.get("img") %>" alt="<%= model.get("name") %>">
+	</a>
+	<div class="caption">
+		<h4></h4>
+		<p>
+			<% _.each(model.get("tags"), function( tag ){ %>
+				<span class="label label-<%= tag.type %>"><%= tag.name %></span>
+			<% }) %>
+		</p>
+	</div>
+</div>
