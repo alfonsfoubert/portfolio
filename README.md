@@ -1,3 +1,8 @@
+Set up parameters
+=================
+cp app/config/parameters.ini.dist app/config/parameters.ini
+Edit app/config/parameters.ini and set yout parameters
+
 Install Libraries
 =================
 npm install

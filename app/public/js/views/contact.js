@@ -1,5 +1,5 @@
-define(['jquery', 'underscore', 'backbone', 'models/contact', 'text!templates/contact.html', 'text!templates/thanks.html'],
-	function( $, _, Backbone, ContactModel, ContactTemplate, ThanksTemplate ){
+define(['jquery', 'underscore', 'backbone', 'models/contact', 'text!templates/contact.html', 'text!templates/thanks.html', "text!templates/error.html"],
+	function( $, _, Backbone, ContactModel, ContactTemplate, ThanksTemplate, ErrorTemplate ){
 		var ProjectsView = Backbone.View.extend({
 			events: {
 				"click .select-links": "select",
@@ -39,15 +39,29 @@ define(['jquery', 'underscore', 'backbone', 'models/contact', 'text!templates/co
 
 				// Save the info
 				var contactModel = new ContactModel();
-				contactModel.set( $('form').serializeObject() );
-				contactModel.save();
-				
-				// Reset form data
-				$('form')[0].reset();
+				contactModel.save( $('form').serializeObject(), {
+					success: function(){
+						if ( contactModel.get("status") == "sent" ) {
+							
+							// Reset form data
+							$('form')[0].reset();
 
-				// Render Thanks template
-				var thanks = _.template( ThanksTemplate );
-				$("#contact-content").prepend( thanks( { model: contactModel } ) );
+							// Render Thanks template
+							var thanks = _.template( ThanksTemplate );
+							$("#contact-content").prepend( thanks( { model: contactModel } ) );
+
+						} else {
+							// Render Error template
+							var error = _.template( ErrorTemplate );
+							$("#contact-content").prepend( error() );
+						}
+					},
+					error: function(){
+						// Render Error template
+						var error = _.template( ErrorTemplate );
+						$("#contact-content").prepend( error() );
+					} 
+				});
 				
 				// Return False
 				return false;

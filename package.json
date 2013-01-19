@@ -4,6 +4,8 @@
 	"version": "1.0.0",
 	"private": true,
 	"dependencies": {
-		"express": "3.0.6"
+		"express": "3.0.6",
+		"nodemailer": "0.3.37",
+		"iniparser": "1.0.5"
 	}
 }
