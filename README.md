@@ -2,12 +2,6 @@ Install Libraries
 =================
 npm install
 
-Install the nodejs init.d script
-================================
-sudo ln -s /home/ubuntu/projects/portfolio/portfolio.sh /etc/init.d/portfolio
-sudo chmod +x /etc/init.d/portfolio
-sudo update-rc.d portfolio defaults 98 02
-
 Install NodeJS on server
 ========================
 sudo apt-get install software-properties-common
@@ -18,4 +12,23 @@ sudo apt-get install nodejs npm
 
 Install Mercurial on server
 ===========================
+sudo apt-get update
 sudo apt-get install mercurial
+
+Install Supervisor
+==================
+sudo apt-get install python-setuptools
+sudo easy_install supervisor
+curl https://raw.github.com/gist/176149/88d0d68c4af22a7474ad1d011659ea2d27e35b8d/supervisord.sh > supervisord
+chmod +x supervisord
+sudo mv supervisord /etc/init.d/supervisord
+sudo apt-get install dialog
+sudo rcconf
+sudo echo_supervisord_conf > supervisord.conf
+sudo mv supervisord.conf /etc/supervisord.conf
+sudo vi /etc/supervisord.conf
+-- Add Section --
+[program:portfolio]
+command=node app.js
+directory=/home/ubuntu/www/portfolio/app/
+environment=NODE_ENV=production
