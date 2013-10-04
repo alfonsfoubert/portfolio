@@ -37,7 +37,7 @@ node app/app.js
 ```
 And you are done!
 
-Try it out on [http://localhost:3000][localhost]
+Try it out at [http://localhost:3000][localhost]
 
 ## Extra
 
