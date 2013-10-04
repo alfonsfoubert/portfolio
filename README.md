@@ -1,39 +1,48 @@
-Set up parameters
-=================
-cp app/config/parameters.ini.dist app/config/parameters.ini
-Edit app/config/parameters.ini and set yout parameters
+# Portfolio
 
-Install Libraries
-=================
+Alfons Foubert's portfolio
+
+## Installation
+
+Installation is a 3 step process:
+
+1. Download the code
+2. Download the libraries
+3. Set up your parameters
+
+### Step 1: Download the code
+
+``` bash
+git clone https://github.com/D3r3ck/portfolio.git
+```
+
+### Step 2: Download the libraries
+
+``` bash
 npm install
+```
 
-Install NodeJS on server
-========================
-sudo apt-get install software-properties-common
-sudo apt-get install python-software-properties
-sudo add-apt-repository ppa:chris-lea/node.js
-sudo apt-get update
-sudo apt-get install nodejs npm
+### Step 3: Set up your parameters
 
-Install Mercurial on server
-===========================
-sudo apt-get update
-sudo apt-get install mercurial
+``` bash
+cp app/config/parameters.ini.dist app/config/parameters.ini
+vi app/config/parameters.ini
+```
+And configure your parameters
 
-Install Supervisor
-==================
-sudo apt-get install python-setuptools
-sudo easy_install supervisor
-curl https://raw.github.com/gist/176149/88d0d68c4af22a7474ad1d011659ea2d27e35b8d/supervisord.sh > supervisord
-chmod +x supervisord
-sudo mv supervisord /etc/init.d/supervisord
-sudo apt-get install dialog
-sudo rcconf
-sudo echo_supervisord_conf > supervisord.conf
-sudo mv supervisord.conf /etc/supervisord.conf
-sudo vi /etc/supervisord.conf
--- Add Section --
-[program:portfolio]
-command=node app.js
-directory=/home/ubuntu/www/portfolio/app/
-environment=NODE_ENV=production
+Now you can start the project just writing
+
+``` bash
+node app/app.js
+```
+And you are done!
+
+Try it out on [http://localhost:3000][localhost]
+
+## Extra
+
+In order to get this project working properly, you must have nodejs and npm installed.
+You can find how to install [here][nodejs-install].
+
+[localhost]: http://localhost:3000
+[nodejs-install]: http://nodejs.org/
