@@ -4,6 +4,7 @@ var fs         = require("fs");
 var path       = require("path");
 var nodemailer = require("nodemailer");
 var iniparser  = require("iniparser")
+var http       = require("http");
 
 // Read INI configuration
 var config     = iniparser.parseSync( path.resolve(__dirname, 'config/parameters.ini') );
@@ -21,8 +22,15 @@ var smtpTransport = nodemailer.createTransport( "SMTP", {
 var app = express();
 
 // Configuration
+app.set('port', process.env.PORT || 3000);
 app.use(express.static(__dirname + '/public'));
 app.use(express.bodyParser());
+
+
+// Development only
+if ('development' == app.get('env')) {
+  app.use(express.errorHandler());
+}
 
 // Routes
 app.get('/api', function( req, res ){
@@ -62,5 +70,6 @@ app.post('/api/contact', function( req, res ){
 });
 
 // Starting server
-console.log( 'Lisening server at port 80 ');
-app.listen(80);
+http.createServer(app).listen(app.get('port'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
+});
